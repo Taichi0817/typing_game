@@ -1,23 +1,21 @@
-/* getch^putch—p‚Ì‹¤’Êƒwƒbƒ_ "getputch.h" */
+/* getch/putchã‚ˆã†ã®å…±é€šãƒ˜ãƒƒãƒ€ "getputch.h" */
 
 #ifndef __GETPUTCH
 
   #define __GETPUTCH
 
   #if defined(_MSC_VER) || (__TURBOC__) || (LSI_C)
-
-	/* MS-Windows^MS-DOSiVisual C++, Borland C++, LSI-C 86 etc ...j */
-
+	/*Windows*/
 	#include <conio.h>
 
-	static void init_getputch(void) { /* ‹ó */ }
+	static void init_getputch(void) { /* ?? */ }
 
-	static void term_getputch(void) { /* ‹ó */ }
+	static void term_getputch(void) { /* ?? */ }
 
 
   #else
 
-	/* Cursesƒ‰ƒCƒuƒ‰ƒŠ‚ª’ñ‹Ÿ‚³‚ê‚éUNIX^Linux^OS X */
+	/* Linux*/
 
 	#include <curses.h>
 
@@ -26,7 +24,7 @@
 	#undef printf
 	static char __buf[4096];
 
-	/*--- __putcharFputcharŠÖ”‚Æ“¯“™i‰üs‚ğ[‰üs{•œ‹A]‚Åo—Íj---*/
+	/*--- __putchar?Fputchar?Ö??Æ“????i???s??[???s?{???A]?Åo?Íj---*/
 	static int __putchar(int ch)
 	{
 		if (ch == '\n')
@@ -34,7 +32,7 @@
 		return putchar(ch);
 	}
 
-	/*--- putchF‚P•¶š•\¦‚µ‚Äƒoƒbƒtƒ@‚ğ‘|‚«o‚· ---*/
+	/*--- putch?F?P?????\?????Äƒo?b?t?@???|???o?? ---*/
 	static int putch(int ch)
 	{
 		int result = putchar(ch);
@@ -43,7 +41,7 @@
 		return result;
 	}
 
-	/*--- __printfFprintfŠÖ”‚Æ“¯“™i‰üs‚ğ[‰üs{•œ‹A]‚Åo—Íj---*/
+	/*--- __printf?Fprintf?Ö??Æ“????i???s??[???s?{???A]?Åo?Íj---*/
 	static int __printf(const char *format, ...)
 	{
 		va_list	ap;
@@ -61,7 +59,7 @@
 		return count;
 	}
 
-	/*--- __putsFputsŠÖ”‚Æ“¯“™i‰üs‚ğ[‰üs{•œ‹A]‚Åo—Íj---*/
+	/*--- __puts?Fputs?Ö??Æ“????i???s??[???s?{???A]?Åo?Íj---*/
 	static int __puts(const char *s)
 	{
 		int i, j;
@@ -74,7 +72,7 @@
 		return puts(__buf);
 	}
 
-	/*--- ƒ‰ƒCƒuƒ‰ƒŠ‰Šúˆ— ---*/
+	/*--- ???C?u???????ï¿½ï¿½ï¿½ï¿½ï¿½ ---*/
 	static void init_getputch(void)
 	{
 		initscr();
@@ -83,7 +81,7 @@
 		refresh();
 	}
 
-	/*--- ƒ‰ƒCƒuƒ‰ƒŠI—¹ˆ— ---*/
+	/*--- ???C?u?????I?????? ---*/
 	static void term_getputch(void)
 	{
 		endwin();
